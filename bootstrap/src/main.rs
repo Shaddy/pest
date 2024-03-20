@@ -15,6 +15,10 @@ fn main() {
         env!("CARGO_MANIFEST_DIR"),
         "/../meta/src/grammar.pest"
     ));
+
+    let normalized_path = pest.to_string_lossy().to_string().replace(r#"\\?\"#, "");
+    let pest = Path::new(&normalized_path);
+
     // Path on which we should write generated grammar file.
     // In case `not-bootstrap-in-src` is:
     // * OFF -> in `grammar.rs` next to `grammar.pest`
